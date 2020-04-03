@@ -1,0 +1,3 @@
+# metrics='annotationClickThroughRate,annotationCloseRate,averageViewDuration,comments,dislikes,estimatedMinutesWatched,estimatedRevenue,likes,shares,subscribersGained,subscribersLost,viewerPercentage,views',
+			# dimensions='ageGroup,channel,country,day,gender,month,sharingService,uploaderType,video,deviceType,operatingSystem',
+			

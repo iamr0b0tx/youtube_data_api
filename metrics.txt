@@ -1,0 +1,5 @@
+estimatedMinutesWatched
+views
+likes
+subscribersGained
+shares

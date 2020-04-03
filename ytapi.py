@@ -18,6 +18,14 @@ API_SERVICE_NAME = 'youtubeAnalytics'
 API_VERSION = 'v2'
 CLIENT_SECRETS_FILE = 'client_secret.json'
 
+def read_input(filepath):
+	# read params
+	try:
+		with open(filepath) as file_object:
+			return file_object.read().replace('\n', ',').replace('\r', ',').replace(' ', '').strip()
+	except Exception as e:
+		print(e)
+
 def get_service():
 	flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRETS_FILE, SCOPES)
 	credentials = flow.run_console()
@@ -39,10 +47,10 @@ if __name__ == '__main__':
 	start_date = input("Type the day you want result to start (YYYY-MM-DD) and press enter: ")
 	end_date = input("Type the day you want result to end (YYYY-MM-DD) and press enter: ")
 	
-	if not start_date:
+	if not start_date.strip():
 		start_date = strftime('%Y-01-01')
 
-	if not end_date:
+	if not end_date.strip():
 		end_date = strftime("%Y-%m-%d")
 
 	youtubeAnalytics = get_service()
@@ -51,8 +59,8 @@ if __name__ == '__main__':
 			ids='channel==MINE',
 			startDate=start_date,
 			endDate=end_date,
-			metrics='annotationClickThroughRate,annotationCloseRate,averageViewDuration,comments,dislikes,estimatedMinutesWatched,estimatedRevenue,likes,shares,subscribersGained,subscribersLost,viewerPercentage,views',
-			dimensions='ageGroup,channel,country,day,gender,month,sharingService,uploaderType,video,deviceType,operatingSystem',
+			metrics=read_input('metrics.txt'),
+			dimensions=read_input('dimensions.txt'),
 			sort='day'
 	)
 
