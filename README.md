@@ -1,7 +1,7 @@
 # youtube_data_api
-To fetch data from youtube using the youtube_analytics_report.query api. This project has the code sample (in python) to pull data from the api. The code sample can be edited to suit needs like dimensions(https://developers.google.com/youtube/analytics/dimensions) and metrics(https://developers.google.com/youtube/analytics/metrics). There is also and __EXE__ available for windows users to pull core metrics and dimensions from youtube api. All tou need is to set up the credentials as explained below.
+To fetch data from youtube using the youtube_analytics_report.query api. This project has the code sample (in python) to pull data from the api. The code sample can be edited to suit needs like [dimensions](https://developers.google.com/youtube/analytics/dimensions) and [metrics](https://developers.google.com/youtube/analytics/metrics). There is also and __EXE__ available for windows users to pull core metrics and dimensions from youtube api. All tou need is to set up the credentials as explained below.
 
-Check here to find out more https://developers.google.com/youtube/reporting/v1/code_samples/python#retrieve_daily_channel_statistics
+Check here to find out more [Youtube API docs](https://developers.google.com/youtube/reporting/v1/code_samples/python#retrieve_daily_channel_statistics)
 
 
 ## Setting up your project
@@ -35,7 +35,7 @@ Before running this sample locally for the first time, you need to set up author
     ```
     pip install --upgrade google-auth google-auth-oauthlib google-auth-httplib2
     ```
-    
+
 ### Testing
 Now, you are ready to actually test the sample:
 1. Copy the code sample below to your working directory.
