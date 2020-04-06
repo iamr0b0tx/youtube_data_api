@@ -4,7 +4,7 @@ To fetch data from youtube using the youtube_analytics_report.query api. This pr
 Check here to find out more [Youtube API docs](https://developers.google.com/youtube/reporting/v1/code_samples/python#retrieve_daily_channel_statistics)
 
 
-## Setting up your project
+## Setting up your Project
 Before running this sample locally for the first time, you need to set up authorization credentials for your project:
 
 1. Create or select a project in the Google API Console.
