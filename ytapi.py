@@ -49,12 +49,13 @@ if __name__ == '__main__':
 	# initilize
 	try_again = None
 
-	while try_again  != 'q':
-		print("\nEdit the [dimensions.txt] and [metrics.txt] to specify the parameters you wish to obtain")
-		print("NOTE: Make sure you have your [client_secret.json] in this folder")
-		print("NOTE: You can press [enter] without the dates to use a default day")
+	print("\nEdit the [dimensions.txt] and [metrics.txt] to specify the parameters you wish to obtain")
+	print("NOTE: Make sure you have your [client_secret.json] in this folder")
+	print("NOTE: You can press [enter] without the dates to use a default day")
 
-		print("\nResult Time range\n===============")
+	while try_again  != 'q':
+		
+		print("\nSpecify Time range\n===============")
 		start_date = input("Type the day you want result to start (YYYY-MM-DD) and press enter: ")
 		end_date = input("Type the day you want result to end (YYYY-MM-DD) and press enter: ")
 		
@@ -63,16 +64,26 @@ if __name__ == '__main__':
 
 		if not end_date.strip():
 			end_date = strftime("%Y-%m-%d")
+		
+		input("\n=========Ensure your dimension and metric files are up to date, press [ENTER] to fetch data!=========")
+		print("Fetching...\n")
 
-		data_object = execute_api_request(
+		try:
+			dimensions = read_input('dimensions.txt')
+			data_object = execute_api_request(
 				youtubeAnalytics.reports().query,
 				ids='channel==MINE',
 				startDate=start_date,
 				endDate=end_date,
 				metrics=read_input('metrics.txt'),
-				dimensions=read_input('dimensions.txt'),
-				sort='day'
-		)
+				dimensions=dimensions,
+				sort=dimensions.split(',')[0]
+			)
+
+		except Exception as e:
+			print('\nAn error Happened: ', e)
+			input("Press enter to continue with application!\n")
+			continue
 
 		# the output recieved
 		output_filepath = f'results/{ctime().replace(":", "_")}'
@@ -91,5 +102,10 @@ if __name__ == '__main__':
 			# get the rows of data
 			wr.writerows(data_object["rows"])
 
+		print(f"[DONE] Your output has been created in '{output_filepath}.json' and '{output_filepath}.csv'")
+
 		# if you wish to try again
-		try_again = input("Type ['q' and enter] to quit or just [enter] to continue: ").strip()
+		try_again = input("Type ['q' and enter] to quit or just [enter] to make another request: ").strip()
+
+		#divide
+		print('\n', '='*50, '\n')
